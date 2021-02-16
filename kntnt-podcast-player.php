@@ -7,7 +7,7 @@
  * Plugin Name:       Kntnt Podcast Player
  * Plugin URI:        https://github.com/Kntnt/kntnt-podcast-player
  * GitHub Plugin URI: https://github.com/Kntnt/kntnt-podcast-player
- * Description:       Adds a lead paragraph to selected post types.
+ * Description:       Allows creation of customizable podcast players.
  * Version:           1.0.0
  * Author:            Thomas Barregren
  * Author URI:        https://www.kntnt.com/

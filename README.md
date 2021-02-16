@@ -1,6 +1,6 @@
 # Kntnt Podcast Player
 
-WordPress plugin that TODO 
+WordPress plugin that allows creation of podcast players.
 
 ## Description
 
@@ -54,4 +54,4 @@ If you are familiar with Git, please make a pull request.
 
 ### 1.0.0
 
-The initial release of a fully functional plugin.
+Initial release of a fully functional plugin.
