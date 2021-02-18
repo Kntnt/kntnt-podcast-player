@@ -7,9 +7,10 @@ namespace Kntnt\Podcast_Player;
 final class Plugin extends Abstract_Plugin {
 
 	use Logger;
-	use Options;
 	use Shortcodes;
+	use Templates;
 	use Dependency_Check;
+	use Services;
 
 	private static $classes = [
 		'any' => [

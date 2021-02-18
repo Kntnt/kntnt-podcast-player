@@ -14,49 +14,50 @@ class Add_Shortcode {
 		'loop' => 'off',
 	];
 
-	private $shortcodes = [];
+	private $shortcodes;
 
 	public function run() {
 
-		$this->fetch_shortcodes();
+		$this->shortcodes = get_field( 'kntnt-podcast-shortcuts', 'option' ) ?: [];
+		Plugin::debug( '$shortcodes = %s', $this->shortcodes );
 
-		foreach ( array_keys( $this->shortcodes ) as $shortcut ) {
-			add_shortcode( $shortcut, [ $this, 'shortcode' ] );
-			Plugin::debug( 'Added shortcode [%s].', $shortcut );
+		foreach ( $this->shortcodes as $shortcode ) {
+			add_shortcode( $shortcode['tag'], [ $this, 'shortcode' ] );
+			Plugin::debug( 'Added shortcode [%s].', $shortcode['tag'] );
 		}
 
 	}
 
-	public function shortcode( $atts, $content, $tag ) {
+	public function shortcode( $variables, $content, $tag ) {
 
-		$atts = Plugin::shortcode_atts( self::$defaults, $atts, $tag );
+		// Fill in the blanks
+		$variables = Plugin::shortcode_atts( self::$defaults, $variables, $tag );
 
-		if ( $atts['source_template_substitute'] ) {
-			if ( ! $atts['src'] ) {
-				$atts['src'] = strtr( $this->shortcodes[ $tag ]['source_template'], [ '{}' => $atts['source_template_substitute'] ] );
-			}
-			unset( $atts['source_template_substitute'] );
+		// Add $content to the variables
+		$variables['content'] = $content;
+
+		// Add shortcode settings to the variables.
+		$variables += $this->shortcodes[ array_search( $tag, array_column( $this->shortcodes, 'tag' ) ) ];
+
+		// If template is provided and src is empty, use template to create src.
+		if ( ! $variables['src'] && $variables['source_template_substitute'] ) {
+			$variables['src'] = strtr( $variables['source_template'], [ '{}' => $variables['source_template_substitute'] ] );
 		}
 
-		Plugin::debug( '[audio src="%s" preload="%s", autoplay="%s", loop="%s"]', $tag, $atts['src'], $atts['preload'], $atts['autoplay'], $atts['loop'] );
-
-		$content = wp_audio_shortcode( $atts, $content );
-
-		// TODO: ADD BADGES
-
-		return $content;
-
-	}
-
-	private function fetch_shortcodes() {
-		if ( $sc = get_field( 'kntnt-podcast-shortcuts', 'option' ) ) {
-			foreach ( $sc as $shortcode ) {
-				$this->shortcodes[ $shortcode['tag'] ] = [
-					'source_template' => $shortcode['source_template'],
-					'badges' => $shortcode['badges'],
-				];
-			}
+		// Grok with the badges.
+		$color = $variables['color'];
+		foreach ( $variables['badges'] as &$badge ) {
+			$name = $badge['name'];
+			$badge['text'] = sprintf( 'feed' == $name ? __( 'Subscribe with %s', 'kntnt_podcast_player' ) : __( 'Listen on %s', 'kntnt_podcast_player' ), Plugin::services( $name ) );
+			$badge['src'] = Plugin::plugin_url( "badges/{$name}_{$color}_en.png" );
+			$badge['srcset'] = Plugin::plugin_url( "badges/{$name}_{$color}_en@2x.png" ) . ' 2x, ' . Plugin::plugin_url( "badges/{$name}_{$color}_en@3x.png" ) . ' 3x';
 		}
+
+		Plugin::debug( 'Variables: %s', $variables );
+
+		// Return the player HTML.
+		return Plugin::include_template( 'includes/kntnt-podcast-player.php', $variables, true );
+
 	}
 
 }

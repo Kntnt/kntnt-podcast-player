@@ -50,6 +50,10 @@ If you are unfamiliar with Git, please date it as a new issue on the plugin's [i
 
 If you are familiar with Git, please make a pull request.
 
+## Credits
+
+The badges are from the [pocast_badges](https://github.com/barredo/podcasts_badges) – a project by Álex Barredo.
+
 ## Changelog
 
 ### 1.0.0
