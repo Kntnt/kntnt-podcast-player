@@ -20,7 +20,7 @@
 namespace Kntnt\Podcast_Player;
 
 // Uncomment following line to debug this plugin.
-define( 'KNTNT_PODCAST_PLAYER_DEBUG', true );
+// define( 'KNTNT_PODCAST_PLAYER_DEBUG', true );
 
 require 'autoload.php';
 
