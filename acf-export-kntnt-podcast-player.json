@@ -20,7 +20,7 @@
                 "min": 0,
                 "max": 0,
                 "layout": "block",
-                "button_label": "Add shortcut",
+                "button_label": "Add shortcode",
                 "sub_fields": [
                     {
                         "key": "field_602c06bc2b234",
@@ -230,7 +230,7 @@
                             {
                                 "key": "field_602c072f2b236",
                                 "label": "Badge",
-                                "name": "kntnt-podcast-shortcut-badge",
+                                "name": "name",
                                 "type": "select",
                                 "instructions": "",
                                 "required": 1,

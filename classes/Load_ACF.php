@@ -53,7 +53,7 @@ As an alternative to provide the <code>src</code> attribute, you can add a strin
 					'min' => 0,
 					'max' => 0,
 					'layout' => 'block',
-					'button_label' => __( 'Add shortcut', 'kntnt-podcast-player' ),
+					'button_label' => __( 'Add shortcode', 'kntnt-podcast-player' ),
 					'sub_fields' => [
 						[
 							'key' => 'field_602c06bc2b234',
@@ -260,7 +260,7 @@ As an alternative to provide the <code>src</code> attribute, you can add a strin
 								[
 									'key' => 'field_602c072f2b236',
 									'label' => __( 'Badge', 'kntnt-podcast-player' ),
-									'name' => 'kntnt-podcast-shortcut-badge',
+									'name' => 'name',
 									'type' => 'select',
 									'instructions' => '',
 									'required' => 1,

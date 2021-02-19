@@ -6,6 +6,8 @@ namespace Kntnt\Podcast_Player;
 
 class Add_Shortcode {
 
+	use Badges;
+
 	public function run() {
 
 		foreach ( Plugin::all_shortcodes( 'tag' ) as $tag ) {
@@ -22,7 +24,7 @@ class Add_Shortcode {
 
 		// Add extra badge information to the variables.
 		foreach ( $shortcode_settings['badges'] as &$badge ) {
-			$badge['text'] = sprintf( 'feed' == $badge['name'] ? __( 'Subscribe with %s', 'kntnt_podcast_player' ) : __( 'Listen on %s', 'kntnt_podcast_player' ), Plugin::services( $badge['name'] ) );
+			$badge['text'] = sprintf( 'feed' == $badge['name'] ? __( 'Subscribe with %s', 'kntnt_podcast_player' ) : __( 'Listen on %s', 'kntnt_podcast_player' ), self::services( $badge['name'] ) );
 			$badge['src'] = Plugin::plugin_url( "badges/{$badge['name']}_{$shortcode_settings['color']}_en.png" );
 			$badge['srcset'] = Plugin::plugin_url( "badges/{$badge['name']}_{$shortcode_settings['color']}_en@2x.png" ) . ' 2x, ' . Plugin::plugin_url( "badges/{$badge['name']}_{$shortcode_settings['color']}_en@3x.png" ) . ' 3x';
 		}
