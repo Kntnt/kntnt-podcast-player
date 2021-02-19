@@ -1,3 +1,37 @@
 .kntnt-podcast-player {
-    outline: 1px solid red;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.kntnt-podcast-player br,
+.kntnt-podcast-player p {
+    display: none;
+}
+
+.kntnt-podcast-player-badges {
+    --margin: 0.1em;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: calc(0em - var(--margin));
+    margin-top: var(--margin);
+}
+
+.kntnt-podcast-player-badges > a {
+    flex-basis: 25%;
+    flex-grow: 1;
+}
+
+.kntnt-podcast-player-badges > a > img {
+    width: calc(100% - 2 * var(--margin));
+    max-width: 229px;
+    margin: var(--margin);
+}
+
+.kntnt-podcast-player-player .mejs-container,
+.kntnt-podcast-player-player .mejs-container .mejs-controls,
+.kntnt-podcast-player-player .mejs-embed,
+.kntnt-podcast-player-player .mejs-embed body {
+    background: #000000;
+    border-radius: 7px;
 }
