@@ -4,7 +4,7 @@
     </div>
 	<?php if ( $badges ): ?>
         <div class="kntnt-podcast-player-badges">
-			<?php foreach ( $badges as $badge ): ?><a href="<?php echo $badge['link']; ?>" title="<?php echo $badge['text']; ?>"><img src="<?php echo $badge['src']; ?>" srcset="<?php echo $badge['srcset']; ?>" alt="<?php echo $badge['text']; ?>"></a><?php endforeach; ?>
+			<?php foreach ( $badges as $badge ): ?><a href="<?php echo $badge['link']; ?>" title="<?php echo $badge['text']; ?>" target="_blank" rel="noopener noreferrer"><img src="<?php echo $badge['src']; ?>" srcset="<?php echo $badge['srcset']; ?>" alt="<?php echo $badge['text']; ?>"></a><?php endforeach; ?>
         </div>
 	<?php endif; ?>
 </div>
